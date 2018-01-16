@@ -65,33 +65,28 @@ body {
   -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 230px;
   z-index: 820;
 }
 .layout-top-nav .content-wrapper,
 .layout-top-nav .main-footer {
   margin-left: 0;
-  margin-right: 0;
 }
 @media (max-width: 767px) {
   .content-wrapper,
   .main-footer {
     margin-left: 0;
-    margin-right: 0;
   }
 }
 @media (min-width: 768px) {
   .sidebar-collapse .content-wrapper,
   .sidebar-collapse .main-footer {
     margin-left: 0;
-    margin-right: 0;
   }
 }
 @media (max-width: 767px) {
   .sidebar-open .content-wrapper,
   .sidebar-open .main-footer {
-
     -webkit-transform: translate(230px, 0);
     -ms-transform: translate(230px, 0);
     -o-transform: translate(230px, 0);
@@ -2784,7 +2779,6 @@ a:focus {
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
   border-top: 1px solid #f4f4f4;
-  margin-right: 150px;
 }
 .table > thead > tr > th {
   border-bottom: 2px solid #f4f4f4;
