@@ -1,6 +1,6 @@
 <template>
   <header class="c-header">
-    <b-navbar toggleable="md" type="dark" variant="info" >
+    <b-navbar toggleable="md" type="dark" variant="info">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-navbar-brand href="#">EVENOR</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
@@ -15,7 +15,7 @@
         <b-navbar-nav class="ml-auto">
           <b-nav-form right>
             <b-input-group>
-              <b-form-input size="12" type="text" placeholder="Search"/>
+              <b-form-input size="md" type="text" placeholder="Search"/>
               <b-input-group-append>
                 <b-button variant="outline-light" class="" type="submit">
                   <icon name="search"></icon>

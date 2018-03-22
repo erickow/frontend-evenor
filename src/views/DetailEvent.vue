@@ -4,7 +4,7 @@
           <b-col sm="12" md="6" lg="6">
               <b-card 
                     no-body
-                    img-src="https://placekitten.com/380/200"
+                    :img-src="require('../assets/img/dummy.jpg')"
                     img-alt="Image"
                     img-top>
                 
