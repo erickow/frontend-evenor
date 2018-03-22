@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomePage from '@/components/Homepage'
-import UserPage from '@/components/UserPage'
+import Full from '@/containers/Full'
+import Home from '@/views/Home'
+import DetailEvent from '@/views/DetailEvent'
 
 Vue.use(Router)
 
@@ -9,13 +10,29 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Homepage',
-      component: HomePage
+      redirect: '/home',
+      name: 'root',
+      component: Full,
+      children: [
+        {
+          path: 'home',
+          name: 'Home',
+          component: Home
+        }
+      ]
     },
     {
-      path: '/user',
-      name: 'UserPage',
-      component: UserPage
+      path: '/event',
+      name: 'Event',
+      component: Full,
+      children: [
+        {
+          path: 'detail',
+          name: 'Detail',
+          component: DetailEvent,
+          props: true
+        }
+      ]
     }
   ]
 })
