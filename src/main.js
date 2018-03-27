@@ -8,9 +8,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import store from './store/index'
+import VueAlertify from 'vue-alertify'
 
 Vue.component('icon', Icon)
 
+Vue.use(VueAxios, axios, VueAlertify)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
@@ -18,6 +23,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App, Icon }
 })
