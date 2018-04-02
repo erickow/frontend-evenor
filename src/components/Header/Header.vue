@@ -29,6 +29,7 @@
             <template slot="button-content">
               <em>Login</em>
             </template>
+            <b-dropdown-item :to="{ path: '/profile/'}">My Event</b-dropdown-item>
             <b-dropdown-item href="#">Profile</b-dropdown-item>
             <b-dropdown-item href="#">Signout</b-dropdown-item>
           </b-nav-item-dropdown>
