@@ -37,9 +37,9 @@
     <b-row  align-h="center">
       <b-col sm="12" md="10" lg="10">
         <b-card-group tag="div">
-        <b-col class="mt-5" v-for="(card, index) in cards" :key="index" 
+        <b-col class="mt-5" v-for="(events, index) in homeEvents" :key="index" 
                 sm="11" md="6" lg="4">
-          <b-link class="card-link" :to="{ path: 'event/detail', params: { userId: 123 }}">
+          <b-link class="card-link" :to="{ path: 'event/' + events.id}">
             <b-card
               footer-tag="footer" no-body>
               <b-card-img
@@ -48,12 +48,10 @@
                 height="200" top>
               </b-card-img>
               <div class="m-2">
-                <h3 class="m-0">Judul Event</h3>
-                <small>01-01-2018</small>
+                <h5 class="m-0">{{ events.name }}</h5>
+                <small>{{ events.startDate }}</small>
                 <p class="card-text m-0 py-0">
-                    This is a wider card with supporting text below as a
-                    natural lead-in to additional content. This content
-                    is a little bit longer.
+                    {{events.description}}
                 </p>
                     <!-- <b-button size="sm" variant="outline-dark" class="" type="submit">
                       <icon name="share-alt"></icon> Share
@@ -75,9 +73,16 @@
 <script>
 export default {
   name: 'v-home',
+  created () {
+    this.$store.dispatch('loadHomeEvents')
+  },
   data () {
     return {
-      cards: 6
+    }
+  },
+  computed: {
+    homeEvents () {
+      return this.$store.getters.homeEvents
     }
   }
 }
@@ -91,5 +96,4 @@ export default {
 .btn .fa-icon:last-child {
     margin-right: 0;
 }
-
 </style>

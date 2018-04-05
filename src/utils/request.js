@@ -45,7 +45,6 @@ export function requestAPI (method, url, data, onSuccess, onFailed) {
 
 export function request (method, url, data, onSuccess, onFailed) {
   return Vue.axios({
-    withCredentials: true,
     method: method,
     url: BaseURL + url,
     headers: { 'Authorization': 'Bearer ' + getTokenLocal() },
@@ -92,7 +91,6 @@ export function authentication (username, password) {
 
 function auth (username, password) {
   Vue.axios({
-    withCredentials: true,
     method: 'post',
     url: BaseURL + 'oauth/token?grant_type=password&username=' + username + '&password=' + password,
     auth: ApplicationAuth

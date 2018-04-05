@@ -1,40 +1,36 @@
 import { request } from '@/utils/request'
-import { setUser as setUserCookies } from '@/utils/auth'
-import { STATUS_CODES } from 'http';
-const user = {
+const event = {
   state: {
-    EVENTS: {
+    EVENT: {
       name: '',
       description: '',
       comittee: {},
       startDate: '',
       endDate: '',
       id: ''
-    },
-    token: '',
-    dashboard: {}
+    }
   },
   mutations: {
-    SET_EVENT_OPEN: (state, event) => {
-      state.EVENTS.description = event.description
-      state.EVENTS.comittee = event.comittee
-      state.EVENTS.name = event.name
-      state.EVENTS.id = event.id
-      state.EVENTS.startDate = event.startDate
-      state.EVENTS.endDate = event.endDate
+    SET_EVENT_DETAIL: (state, event) => {
+      state.EVENT.description = event.description
+      state.EVENT.comittee = event.comittee
+      state.EVENT.name = event.name
+      state.EVENT.id = event.id
+      state.EVENT.startDate = event.startDate
+      state.EVENT.endDate = event.endDate
     }
   },
   actions: {
-    SET_EVENT_DETAIL: ({commit}, eventId) => {
-      return request('get', 'event/', 'id=' + eventId)
+    loadEvent: ({commit}, eventId) => {
+      return request('get', '/home/detail/' + eventId)
         .then(
           response => {
-            setUserCookies(response.object.id)
-            commit('SET_EVENT_OPEN', response.object)
+            console.log(response)
+            commit('SET_EVENT_DETAIL', response)
           }
         )
     }
   }
 }
 
-export default user
+export default event

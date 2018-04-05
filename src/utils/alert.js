@@ -2,7 +2,7 @@ import Swal from 'sweetalert2'
 
 export function warningAlert (message) {
   return Swal({
-    title: 'Error!',
+    title: 'Terjadi Kesalahan',
     text: message,
     type: 'error',
     confirmButtonText: 'Ok'

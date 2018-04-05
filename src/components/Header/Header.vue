@@ -23,11 +23,13 @@
               </b-input-group-append>
             </b-input-group>
           </b-nav-form>
-
+          <b-nav-item :to="{ path: '/login'}" right >
+            Sign in or Sign up
+          </b-nav-item>
           <b-nav-item-dropdown right>
             <!-- Using button-content slot -->
             <template slot="button-content">
-              <em>Login</em>
+              <em>My Profile</em>
             </template>
             <b-dropdown-item :to="{ path: '/profile/'}">My Event</b-dropdown-item>
             <b-dropdown-item href="#">Profile</b-dropdown-item>

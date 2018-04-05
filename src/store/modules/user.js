@@ -1,5 +1,4 @@
 import { request } from '@/utils/request'
-import { setUser as setUserCookies } from '@/utils/auth'
 const user = {
   state: {
     SIGNED: {
@@ -10,8 +9,7 @@ const user = {
       identity: '',
       id: ''
     },
-    token: '',
-    dashboard: {}
+    token: ''
   },
   mutations: {
     SET_SIGNED: (state, user) => {
@@ -30,8 +28,7 @@ const user = {
       return request('get', 'user/', 'name=' + username)
         .then(
           response => {
-            setUserCookies(response.object.id)
-            commit('SET_SIGNED', response.object)
+            commit('SET_SIGNED', response)
           }
         )
     }

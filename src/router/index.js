@@ -5,6 +5,7 @@ import Home from '@/views/Home'
 import DetailEvent from '@/views/DetailEvent'
 import Profile from '@/views/Profile'
 import OrganizeEvent from '@/views/OrganizeEvent'
+import Login from '@/views/Login'
 
 Vue.use(Router)
 
@@ -24,19 +25,32 @@ export default new Router({
       ]
     },
     {
+      path: '/login',
+      name: '',
+      component: Full,
+      children: [
+        {
+          path: '',
+          name: 'Login',
+          component: Login,
+          props: true
+        }
+      ]
+    },
+    {
       path: '/event',
       name: 'Event',
       component: Full,
       children: [
         {
-          path: 'detail',
+          path: ':eventId',
           name: 'Detail',
           component: DetailEvent,
           props: true
         },
         {
           path: 'organize',
-          name: 'organize',
+          name: 'Organize',
           component: OrganizeEvent,
           props: true
         }
@@ -44,12 +58,12 @@ export default new Router({
     },
     {
       path: '/profile',
-      name: 'Profile',
+      name: '',
       component: Full,
       children: [
         {
           path: '/',
-          name: 'Detail',
+          name: 'ProfileDetail',
           component: Profile,
           props: true
         }
