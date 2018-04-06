@@ -39,7 +39,7 @@
         <b-card-group tag="div">
         <b-col class="mt-5" v-for="(events, index) in homeEvents" :key="index" 
                 sm="11" md="6" lg="4">
-          <b-link class="card-link" :to="{ path: 'event/' + events.id}">
+          <b-link class="card-link" :to="{ path: 'event/detail/' + events.id}">
             <b-card
               footer-tag="footer" no-body>
               <b-card-img

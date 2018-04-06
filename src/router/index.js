@@ -6,6 +6,7 @@ import DetailEvent from '@/views/DetailEvent'
 import Profile from '@/views/Profile'
 import OrganizeEvent from '@/views/OrganizeEvent'
 import Login from '@/views/Login'
+import Register from '@/views/Register'
 
 Vue.use(Router)
 
@@ -25,14 +26,26 @@ export default new Router({
       ]
     },
     {
-      path: '/login',
-      name: '',
+      path: '/account',
+      name: 'account',
       component: Full,
       children: [
         {
-          path: '',
+          path: 'login',
           name: 'Login',
           component: Login,
+          props: true
+        },
+        {
+          path: 'register',
+          name: 'Register',
+          component: Register,
+          props: true
+        },
+        {
+          path: '/profile',
+          name: 'Profile',
+          component: Profile,
           props: true
         }
       ]
@@ -43,7 +56,7 @@ export default new Router({
       component: Full,
       children: [
         {
-          path: ':eventId',
+          path: 'detail/:eventId',
           name: 'Detail',
           component: DetailEvent,
           props: true
@@ -52,19 +65,6 @@ export default new Router({
           path: 'organize',
           name: 'Organize',
           component: OrganizeEvent,
-          props: true
-        }
-      ]
-    },
-    {
-      path: '/profile',
-      name: '',
-      component: Full,
-      children: [
-        {
-          path: '/',
-          name: 'ProfileDetail',
-          component: Profile,
           props: true
         }
       ]
