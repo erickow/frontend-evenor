@@ -4,7 +4,7 @@ import Full from '@/containers/Full'
 import Home from '@/views/Home'
 import DetailEvent from '@/views/DetailEvent'
 import Profile from '@/views/Profile'
-import OrganizeEvent from '@/views/OrganizeEvent'
+import OrganizeEvent from '@/views/organize/OrganizeEvent'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 
