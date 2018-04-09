@@ -7,12 +7,16 @@
               <b-tab title="Profile" active>
                 <b-row>
                 <b-col sm="12" md="5" lg="5">
-                  <b-img thumbnail fluid rounded blank width="350" height="350" blank-color="#777" alt="img" class="m-1" />
+                  <b-img thumbnail fluid rounded blank width="400" height="400" blank-color="#777" alt="img" class="m-1" />
                 </b-col>
-                <b-col sm="12" md="7" lg="7">
-                  <h4>Nama : Ericko Wicaksono</h4>
-                  <h4>Email : ericko@mail.com</h4>
-                  <Polygraph/>  
+                <b-col sm="12" md="6" lg="6">  
+                    <Polygraph/>           
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col sm="12" md="12" lg="12">
+                  <h5>Nama : Ericko Wicaksono</h5>
+                  <h5>Email : ericko@mail.com</h5>  
                 </b-col>
               </b-row>
               </b-tab>
@@ -45,12 +49,10 @@
           </b-col>
       </b-row>
   </div>
-    
-  </div>  
 </template>
 
 <script>
-import Polygraph from '@/components/Polygraph'
+import Polygraph from '@/components/polygraph/Polygraph.vue'
 export default {
   name: 'v-profile',
   components: {

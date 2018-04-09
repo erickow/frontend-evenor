@@ -22,6 +22,25 @@ function getTokenLocal () {
   return token === null ? getToken() : token
 }
 
+export function requestPublic (method, url, data, onSuccess, onFailed) {
+  return Vue.axios({
+    method: method,
+    url: BaseURL + url,
+    data: data
+  })
+  .then(
+    response => {
+      if (onSuccess !== undefined && onSuccess !== null) successAlert(onSuccess)
+      return response.data
+    }
+  )
+  .catch((error) => {
+    warningAlert(onFailed)
+    console.log(error)
+  }
+  )
+}
+
 export function requestAPI (method, url, data, onSuccess, onFailed) {
   return Vue.axios({
     withCredentials: true,

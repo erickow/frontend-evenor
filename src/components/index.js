@@ -4,6 +4,7 @@ import OrganizeTask from './organize/task/Task.vue'
 import OrganizeDetail from './organize/detail/Detail.vue'
 import OrganizeComittee from './organize/comittee/Comittee.vue'
 import OrganizeSetting from './organize/setting/Setting.vue'
+import Polygraph from './polygraph/Polygraph.vue'
 
 export {
   Footer,
@@ -11,5 +12,6 @@ export {
   OrganizeTask,
   OrganizeDetail,
   OrganizeComittee,
-  OrganizeSetting
+  OrganizeSetting,
+  Polygraph
 }
