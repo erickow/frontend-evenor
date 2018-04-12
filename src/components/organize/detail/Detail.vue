@@ -4,7 +4,7 @@
           <b-col sm="12" md="10" lg="10">
               <b-card>
                 <b-row>
-                <b-col sm="12" md="8" lg="8">
+                <b-col sm="12" md="7" lg="7">
                     <b-card 
                     no-body
                     :img-src="require('@/assets/img/dummy.jpg')"
@@ -13,7 +13,7 @@
                 
                 </b-card>
                 </b-col>
-                <b-col sm="12" md="4" lg="4">
+                <b-col sm="12" md="5" lg="5">
                     <b-card class="h-100" >
                         <b-table :sort-by.sync="sortBy"
                                 :sort-desc.sync="sortDesc"

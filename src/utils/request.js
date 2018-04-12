@@ -2,8 +2,9 @@ import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from '@/router/index'
-import { setToken, getToken, setUsername, setUser } from '@/utils/auth'
+import { setToken, getToken, setUsername } from '@/utils/auth'
 import { warningAlert, successAlert } from '@/utils/alert'
+import store from '@/store'
 
 Vue.use(axios, VueAxios)
 
@@ -120,8 +121,8 @@ function auth (username, password) {
         if (response.status === 200) {
           setUsername(username)
           setToken(response.data.access_token, response.data.expires_in)
-          setUser(response.data.jti)
           token = response.data.access_token
+          store.dispatch('SET_USER')
           successAlert('Login berhasil')
             .then(result => {
               if (result.value) {

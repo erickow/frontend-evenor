@@ -2,16 +2,26 @@
   <div class="c-profile-detail">
     <b-row>
       <b-col sm="12" md="5" lg="5">
-        <b-img thumbnail fluid rounded blank width="400" height="400" blank-color="#777" alt="img" class="m-1" />
+        <b-card class="h-100" >
+          <b-img thumbnail fluid rounded blank width="400" height="400" blank-color="#777" alt="img" class="m-1" />
+          <h5><strong>Peringkat</strong></h5>
+          <p class="text-center">Event Geeks</p>
+          <h5><strong>Total Score</strong></h5>
+          <p class="text-center">10029</p>
+        </b-card>
       </b-col>
-      <b-col sm="12" md="6" lg="6">  
-          <Polygraph/>           
+      <b-col sm="12" md="7" lg="7">  
+        <b-card no-body class="h-100">
+          <Polygraph/>   
+        </b-card>        
       </b-col>
     </b-row>
-    <b-row>
+    <b-row class="mt-2">
       <b-col sm="12" md="12" lg="12">
-        <h5>Nama : Ericko Wicaksono</h5>
-        <h5>Email : ericko@mail.com</h5>  
+        <b-card>
+          <h5>Nama : {{ user.name }}</h5>
+          <h5>Email : {{ user.username }} </h5> 
+        </b-card>
       </b-col>
     </b-row>
   </div>
@@ -26,6 +36,11 @@ export default {
   },
   data () {
     return {
+    }
+  },
+  computed: {
+    user () {
+      return this.$store.getters.user
     }
   }
 }

@@ -1,4 +1,5 @@
 import { request } from '@/utils/request'
+import { setUser, getUsername } from '@/utils/auth'
 const user = {
   state: {
     SIGNED: {
@@ -6,7 +7,6 @@ const user = {
       password: '',
       roles: {},
       name: '',
-      identity: '',
       id: ''
     },
     token: ''
@@ -15,7 +15,7 @@ const user = {
     SET_SIGNED: (state, user) => {
       state.SIGNED.username = user.email
       state.SIGNED.password = user.password
-      state.SIGNED.roles = user.role
+      state.SIGNED.roles = user.roles
       state.SIGNED.name = user.name
       state.SIGNED.id = user.id
     },
@@ -24,11 +24,14 @@ const user = {
     }
   },
   actions: {
-    SET_USER: ({commit}, username) => {
-      return request('get', 'user/', 'name=' + username)
+    SET_USER: ({commit}) => {
+      // let url = encodeURIComponent(username)
+      // console.log(url)
+      return request('post', 'user/account/', 'username=' + getUsername())
         .then(
           response => {
             commit('SET_SIGNED', response)
+            setUser(response.id)
           }
         )
     }

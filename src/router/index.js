@@ -62,7 +62,7 @@ export default new Router({
           props: true
         },
         {
-          path: 'organize',
+          path: 'organize/:eventId',
           name: 'Organize',
           component: OrganizeEvent,
           props: true

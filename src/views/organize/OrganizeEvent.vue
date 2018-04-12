@@ -51,6 +51,9 @@ export default {
     OrganizeComittee,
     OrganizeSetting
   },
+  created () {
+    this.$store.dispatch('loadEvent', this.$route.params.eventId)
+  },
   data () {
     return {
       components: OrganizeDetail,
