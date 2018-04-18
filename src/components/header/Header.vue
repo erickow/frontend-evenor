@@ -9,6 +9,9 @@
           <b-nav-item :to="{ path: '/home'}" >
             Home
           </b-nav-item>
+          <b-nav-item :to="{ path: '/achievement/detail'}" >
+            Achievement
+          </b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -23,17 +26,16 @@
               </b-input-group-append>
             </b-input-group>
           </b-nav-form>
-          <b-nav-item :to="{ path: '/account/login'}" right >
+          <b-nav-item v-show="!autenticated" :to="{ path: '/account/login'}" right >
             Sign in or Sign up
           </b-nav-item>
-          <b-nav-item-dropdown right>
+          <b-nav-item-dropdown v-show="autenticated" right>
             <!-- Using button-content slot -->
             <template slot="button-content">
               <em>My Profile</em>
             </template>
-            <b-dropdown-item :to="{ path: '/profile'}">My Event</b-dropdown-item>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Signout</b-dropdown-item>
+            <b-dropdown-item :to="{ path: '/account/profile'}">My Event</b-dropdown-item>
+            <b-dropdown-item @click="logout()">Signout</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
 
@@ -42,11 +44,45 @@
   </header>
 </template>
 <script>
-  export default {
-    name: 'c-header',
-    components: {
-    },
-    methods: {
+import { checkCredentials, destroyCookies } from '@/utils/auth'
+import { confirmationAlert, successAlert } from '@/utils/alert'
+import router from '@/router/index'
+export default {
+  name: 'c-header',
+  created () {
+    console.log('header')
+    if (checkCredentials()) {
+      console.log('auth true')
+      this.$store.dispatch('isAuth', this.true)
+    } else {
+      console.log('auth false')
+      this.$store.dispatch('isAuth', this.false)
+    }
+  },
+  data () {
+    return {
+      true: true,
+      false: false
+    }
+  },
+  methods: {
+    logout: function () {
+      confirmationAlert('Logout', 'Apakah anda yakin keluar dari sistem?',
+        function (e) {
+          successAlert('Logout berhasil')
+            .then(e => {
+              destroyCookies()
+              router.go('home')
+              router.push('/home')
+            })
+        }
+      )
+    }
+  },
+  computed: {
+    autenticated () {
+      return this.$store.getters.auth
     }
   }
+}
 </script>

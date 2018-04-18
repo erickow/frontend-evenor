@@ -19,7 +19,7 @@
                                 :sort-desc.sync="sortDesc"
                                 :items="items"
                                 :fields="fields"
-                                per-page="4"
+                                :per-page="4"
                                 :current-page="currentPage">
                         </b-table>
                         <b-pagination size="md" :total-rows="items.length" v-model="currentPage" :per-page="4">

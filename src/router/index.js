@@ -7,6 +7,7 @@ import Profile from '@/views/profile/Profile'
 import OrganizeEvent from '@/views/organize/OrganizeEvent'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
+import Achievement from '@/views/Achievement'
 
 Vue.use(Router)
 
@@ -43,7 +44,7 @@ export default new Router({
           props: true
         },
         {
-          path: '/profile',
+          path: 'profile',
           name: 'Profile',
           component: Profile,
           props: true
@@ -65,6 +66,19 @@ export default new Router({
           path: 'organize/:eventId',
           name: 'Organize',
           component: OrganizeEvent,
+          props: true
+        }
+      ]
+    },
+    {
+      path: '/achievement',
+      name: 'Achievement',
+      component: Full,
+      children: [
+        {
+          path: 'detail',
+          name: 'AchievementDetail',
+          component: Achievement,
           props: true
         }
       ]

@@ -126,6 +126,7 @@ function auth (username, password) {
           successAlert('Login berhasil')
             .then(result => {
               if (result.value) {
+                router.go('home')
                 router.push('/home')
               }
             })

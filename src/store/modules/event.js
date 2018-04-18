@@ -30,7 +30,7 @@ const event = {
   },
   actions: {
     loadEvent: ({commit}, eventId) => {
-      return request('get', '/home/detail/' + eventId)
+      return request('get', 'home/detail/' + eventId)
         .then(
           response => {
             console.log(response)

@@ -5,7 +5,7 @@
           <b-row>
             <b-col sm="12" md="6" lg="6" 
                   v-for="upcoming in myUpcomingEvents"
-                  :key="upcoming.id"
+                  :key="upcoming.event.id"
                   class="mt-2"
                   >
               <b-card bg-variant="info"
@@ -17,9 +17,9 @@
                     <b-img thumbnail fluid rounded blank width="170" height="150" blank-color="#777" alt="img" class="m-1" />
                   </b-col>
                   <b-col sm="12" md="8" lg="8">
-                    <h5><strong>{{ upcoming.name.slice(0,20) }}...</strong></h5>
-                    <p class="card-text">{{ upcoming.description }}</p>
-                    <b-button :to="{ path: '/event/organize/'+ upcoming.id}" variant="primary">Organize Event</b-button>
+                    <h5><strong>{{ upcoming.event.name.slice(0,20) }}...</strong></h5>
+                    <p class="card-text">{{ upcoming.event.description }}</p>
+                    <b-button :to="{ path: '/event/organize/'+ upcoming.event.id}" variant="primary">Organize Event</b-button>
                   </b-col>
                 </b-row>
               </b-card>
@@ -30,7 +30,7 @@
           <b-row>
             <b-col sm="12" md="6" lg="6" 
                   v-for="history in myHistoryEvents"
-                  :key="history.id"
+                  :key="history.event.id"
                   class="mt-2"
                   >
               <b-card bg-variant="info"
@@ -42,9 +42,9 @@
                     <b-img thumbnail fluid rounded blank width="170" height="150" blank-color="#777" alt="img" class="m-1" />
                   </b-col>
                   <b-col sm="12" md="8" lg="8">
-                    <h5><strong>{{ history.name.slice(0,20) }}...</strong></h5>
-                    <p class="card-text">{{ history.description }}</p>
-                    <b-button :to="{ path: '/event/organize/'+ history.id}" variant="primary">Organize Event</b-button>
+                    <h5><strong>{{ history.event.name.slice(0,20) }}...</strong></h5>
+                    <p class="card-text">{{ history.event.description }}</p>
+                    <b-button :to="{ path: '/event/organize/'+ history.event.id}" variant="primary">Organize Event</b-button>
                   </b-col>
                 </b-row>
               </b-card>

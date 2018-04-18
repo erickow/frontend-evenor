@@ -6,7 +6,7 @@
               <b-tabs pills card vertical>
               <b-tab active>
                 <template align-h="center" slot="title">
-                  <icon scale="3" name="info-circle"></icon> <br> <strong>Detail</strong>
+                  <icon scale="3" name="info-circle"></icon> <br> <strong>Profile</strong>
                 </template>
                 <profile-detail/>
               </b-tab>

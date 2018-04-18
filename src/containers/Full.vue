@@ -20,7 +20,7 @@
 
 <script>
 import { Header as AppHeader, Footer as AppFooter } from '@/components'
-// import { checkCredentials, getUsername } from '@/utils/auth'
+import { checkCredentials } from '@/utils/auth'
 
 export default {
   name: 'full',
@@ -28,10 +28,9 @@ export default {
     AppHeader,
     AppFooter
   },
-  mounted () {
-
+  created () {
+    checkCredentials()
   },
-
   data () {
     return {
     }
