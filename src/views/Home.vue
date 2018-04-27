@@ -33,9 +33,16 @@
     </b-carousel>
       </b-col>
     </b-row>
-    
     <b-row  align-h="center">
       <b-col sm="12" md="10" lg="10">
+        <b-card class="text-center">
+          Buat Event Baru? <b-button v-b-modal="'eventForm'">Buat disini</b-button>
+        </b-card>
+      </b-col>
+    </b-row>
+    
+    <b-row  align-h="center">
+      <b-col sm="12" md="11" lg="11">
         <b-card-group tag="div">
         <b-col class="mt-5" v-for="(events, index) in homeEvents" :key="index" 
                 sm="11" md="6" lg="4">
@@ -67,7 +74,30 @@
       </b-card-group>
       </b-col>
     </b-row>
+
+    <b-modal id="eventForm" size="lg" centered hide-footer title="Buat Acara Baru" @shown="clearForm">
+      <b-form @submit="addEvent">
+        <label for="title">Judul Acara</label>
+        <b-form-input id="title"
+                  v-model="form.name"
+                  type="text"
+                  placeholder="Masukkan judul acara" 
+                  required></b-form-input>
+        <label for="title">Deskripsi Acara</label>
+        <b-form-textarea id="description"
+                  v-model="form.description"
+                  :rows="3"
+                  :max-rows="6"
+                  placeholder="Masukkan deskripsi acara" 
+                  required></b-form-textarea>
+        
+        <b-button class="mt-4" type="submit" variant="outline-primary" block>Buat Acara</b-button>
+      </b-form>
+    </b-modal>
+
   </div>
+
+  
 </template>
 
 <script>
@@ -78,6 +108,21 @@ export default {
   },
   data () {
     return {
+      form: {
+        name: '',
+        description: '',
+        setParticipant: 0,
+        setComittee: 0,
+        startDate: '',
+        endDate: '',
+        adminEvent: ''
+      }
+    }
+  },
+  methods: {
+    addEvent () {
+    },
+    clearForm () {
     }
   },
   computed: {

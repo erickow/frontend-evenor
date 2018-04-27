@@ -4,7 +4,7 @@
       <AppHeader/>
       <div class="app-body">
         <main class="main">
-          <b-container fluid>
+          <b-container fluid id="custom">
             <b-row align-h="center">
               <b-col >
                 <router-view></router-view>
@@ -41,3 +41,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+</style>
+

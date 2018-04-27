@@ -5,7 +5,9 @@ const getters = {
   event: state => state.event.EVENT,
   myUpcomingEvents: state => state.event.MY_UPCOMING_EVENT,
   myHistoryEvents: state => state.event.MY_HISTORY_EVENT,
-  auth: state => state.home.auth
+  auth: state => state.home.auth,
+  eventComittee: state => state.event.EVENT_COMITTEE,
+  eventParticipant: state => state.event.EVENT_PARTICIPANT
 }
 
 export default getters

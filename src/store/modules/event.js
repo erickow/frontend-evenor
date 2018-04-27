@@ -10,7 +10,9 @@ const event = {
       id: ''
     },
     MY_UPCOMING_EVENT: [],
-    MY_HISTORY_EVENT: []
+    MY_HISTORY_EVENT: [],
+    EVENT_PARTICIPANT: [],
+    EVENT_COMITTEE: []
   },
   mutations: {
     SET_EVENT_DETAIL: (state, event) => {
@@ -26,6 +28,12 @@ const event = {
     },
     SET_MY_HISTORY_EVENT: (state, event) => {
       state.MY_HISTORY_EVENT = event
+    },
+    SET_EVENT_PARTICIPANT: (state, participant) => {
+      state.EVENT_PARTICIPANT = participant
+    },
+    SET_EVENT_COMITTEE: (state, comittee) => {
+      state.EVENT_COMITTEE = comittee
     }
   },
   actions: {
@@ -33,7 +41,6 @@ const event = {
       return request('get', 'home/detail/' + eventId)
         .then(
           response => {
-            console.log(response)
             commit('SET_EVENT_DETAIL', response)
           }
         )
@@ -53,6 +60,23 @@ const event = {
             commit('SET_MY_HISTORY_EVENT', response)
           }
         )
+    },
+    loadEventParticipant: ({commit}, eventId) => {
+      return request('get', 'event/participant/' + eventId)
+      .then(
+        response => {
+          console.log(response)
+          commit('SET_EVENT_PARTICIPANT', response)
+        }
+      )
+    },
+    loadEventComittee: ({commit}, eventId) => {
+      return request('get', 'event/comittee/' + eventId)
+      .then(
+        response => {
+          commit('SET_EVENT_COMITTEE', response)
+        }
+      )
     }
   }
 }
