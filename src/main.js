@@ -10,11 +10,12 @@ import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import DatePicker from 'vue2-datepicker'
 import store from './store/index'
 import VueAlertify from 'vue-alertify'
 
 Vue.component('icon', Icon)
-
+Vue.component('date-picker', DatePicker)
 Vue.use(VueAxios, axios, VueAlertify)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
@@ -25,5 +26,5 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App, Icon }
+  components: { App, Icon, DatePicker }
 })

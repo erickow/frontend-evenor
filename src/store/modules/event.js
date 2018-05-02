@@ -1,4 +1,6 @@
 import { request } from '@/utils/request'
+import { getUser } from '@/utils/auth'
+
 const event = {
   state: {
     EVENT: {
@@ -77,6 +79,9 @@ const event = {
           commit('SET_EVENT_COMITTEE', response)
         }
       )
+    },
+    createEvent: ({commit}, data) => {
+      return request('post', 'event/' + getUser(), data)
     }
   }
 }

@@ -76,7 +76,7 @@
     </b-row>
 
     <b-modal id="eventForm" size="lg" centered hide-footer title="Buat Acara Baru" @shown="clearForm">
-      <b-form @submit="addEvent">
+      <b-form >
         <label for="title">Judul Acara</label>
         <b-form-input id="title"
                   v-model="form.name"
@@ -91,7 +91,9 @@
                   placeholder="Masukkan deskripsi acara" 
                   required></b-form-textarea>
         
-        <b-button class="mt-4" type="submit" variant="outline-primary" block>Buat Acara</b-button>
+        <date-picker class="mt-4" v-model="dateData" range type="datetime" format="yyyy-MM-dd HH:mm:ss" lang="en" confirm></date-picker> 
+        
+        <b-button class="mt-4" variant="outline-primary" block @click="addEvent">Buat Acara</b-button>
       </b-form>
     </b-modal>
 
@@ -101,6 +103,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   name: 'v-home',
   created () {
@@ -114,13 +117,18 @@ export default {
         setParticipant: 0,
         setComittee: 0,
         startDate: '',
-        endDate: '',
-        adminEvent: ''
-      }
+        endDate: ''
+      },
+      dateData: []
     }
   },
   methods: {
     addEvent () {
+      console.log(this.dateData)
+      this.form.startDate = moment(this.dateData[0]).format('DD-MM-YYYY HH:mm:ss')
+      this.form.endDate = moment(this.dateData[1]).format('DD-MM-YYYY HH:mm:ss')
+      console.log(this.form)
+      this.$store.dispatch('createEvent', this.form)
     },
     clearForm () {
     }

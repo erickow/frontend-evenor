@@ -4,6 +4,7 @@ import getters from './getters'
 import user from './modules/user'
 import home from './modules/home'
 import event from './modules/event'
+import task from './modules/task'
 
 Vue.use(Vuex)
 
@@ -11,7 +12,8 @@ const store = new Vuex.Store({
   modules: {
     user,
     home,
-    event
+    event,
+    task
   },
   getters
 })
