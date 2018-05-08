@@ -25,6 +25,12 @@ const task = {
     createTask: ({state, dispatch}, [eventId, data]) => {
       console.log(data)
       return request('post', 'task/event/' + eventId, data)
+      .then(
+        response => {
+          dispatch('loadTask', eventId)
+        }
+      )
+      .error(error => console.log(error))
     },
     loadJob: ({commit}, JobId) => {
       return request('get', 'task/job/' + JobId)

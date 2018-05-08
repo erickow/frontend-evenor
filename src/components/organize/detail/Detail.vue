@@ -30,6 +30,13 @@
               <b-row class="mt-4" align-h="center">
                 <b-col sm="12" md="12" lg="12">
                     <b-card>
+                        <vote></vote>
+                    </b-card>
+                </b-col>
+               </b-row>
+              <b-row class="mt-4" align-h="center">
+                <b-col sm="12" md="12" lg="12">
+                    <b-card>
                         <h1>Recent Activity</h1>
                         
                     </b-card>
@@ -42,8 +49,12 @@
 </template>
 
 <script>
+import Vote from './vote'
 export default {
   name: 'c-organize-detail',
+  components: {
+    Vote
+  },
   data () {
     return {
       currentPage: 1,

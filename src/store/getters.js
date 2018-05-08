@@ -8,7 +8,10 @@ const getters = {
   auth: state => state.home.auth,
   eventComittee: state => state.event.EVENT_COMITTEE,
   eventParticipant: state => state.event.EVENT_PARTICIPANT,
-  eventTask: state => state.task.TASK
+  eventTask: state => state.task.TASK,
+  eventJob: state => state.task.JOB,
+  eventUpcomingVote: state => state.vote.UPCOMING_VOTES,
+  eventHistoryVote: state => state.vote.HISTORY_VOTES
 }
 
 export default getters

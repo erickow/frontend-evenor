@@ -1,5 +1,5 @@
 <template>
-  <dv class="c-organize-task">
+  <div class="c-organize-task">
       <b-row class="" align-h="center">
           <b-col sm="12" md="10" lg="10">
               <b-card>
@@ -26,23 +26,23 @@
                                   v-bind:key="task.name"
                                   class="mt-2 p-2 list-task-item"
                                   no-body
-                                  v-b-modal="'jobModal'"
-                                  @click="setJobId(task.id)"
+                                  v-b-modal="'jobModal'" @click="setJob(task.id)"
                               >
                                 <div>
                                   {{ task.name }}
                                 </div>
                                 <div>
                                   <br>
+                                  <button v-b-modal="'jobModal'" @click="setJob(task.id)">Detail</button>
                                   <button v-on:click="removeJob(mytasks.id, task.name, mytasks.jobs, index)">Remove</button>
                                 </div> 
                               </b-card>
                             </transition-group>
-                            <b-card class="mt-2" 
+                          </draggable>
+                          <b-card class="mt-2" 
                                       no-body>
                                 <b-button variant="primary" v-b-modal="'jobForm'" @click="setTaskId(mytasks.id)">Tambah Card</b-button>
                               </b-card>
-                          </draggable>
                         </div>
                       </b-card>
                       </b-col>
@@ -56,7 +56,7 @@
           </b-col>
       </b-row>
 
-      <b-modal id="taskForm" size="lg" centered hide-footer title="Buat Acara Baru" @shown="clearForm">
+      <b-modal id="taskForm" size="lg" centered hide-footer title="Buat Cardboard">
         <b-form >
           <label for="title">Judul Cardboard</label>
           <b-form-input id="title"
@@ -68,7 +68,7 @@
         </b-form>
       </b-modal>
 
-      <b-modal id="jobForm" size="lg" centered hide-footer title="Buat Acara Baru" @shown="clearForm">
+      <b-modal id="jobForm" size="lg" centered hide-footer title="Buat Card Baru" >
         <b-form >
           <label for="title">Judul Card</label>
           <b-form-input id="title"
@@ -83,35 +83,37 @@
                   :max-rows="6"
                   placeholder="Masukkan deskripsi acara" 
                   required></b-form-textarea>
+          <label for="jobDate">Tanggal : </label>
+          <date-picker id="jobDate" class="mt-4" v-model="dateData" range type="datetime" format="yyyy-MM-dd HH:mm:ss" lang="en" confirm></date-picker> 
+          <br><label for="jobDivision">Divisi</label><br>
+          <b-form-select id="jobDivision" v-model="formJob.division" :options="divisionOptions" required/>
 
-          <date-picker class="mt-4" v-model="dateData" range type="datetime" format="yyyy-MM-dd HH:mm:ss" lang="en" confirm></date-picker> 
-        
           <b-button class="mt-4" variant="outline-primary" block @click="addJob">Buat Cardboard</b-button>
         </b-form>
       </b-modal>
 
-      <b-modal id="jobModal" size="lg" centered hide-footer title="Detail Pekerjaan" @shown="clearForm">
-        <b-row class="mt-4" align-h="center">
+      <b-modal id="jobModal" size="lg" centered hide-footer title="Detail Pekerjaan">
+        <b-row class="p-2" align-h="center">
           <b-col sm="12" md="7" lg="7">
-            <h5>{{ jobModal.name }}</h5>
+            <h3>{{ jobModal.name }}</h3>
             <p>{{ jobModal.description }}</p>
-            <h5>Tanggal Mulai : {{ jobModal.startDate }} </h5>
-            <h5>Tanggal Selesai : {{ jobModal.endDate }}</h5>
+            <!-- <h5>Tanggal Mulai : {{ jobModal.startDate }} </h5>
+            <h5>Tanggal Selesai : {{ jobModal.endDate }}</h5> -->
           </b-col>
           <b-col sm="12" md="5" lg="5">
             <b-form >
               <b-form-textarea id="description"
-                      v-model="jobComment.comment"
+                      v-model="comment"
                       :rows="2"
                       :max-rows="3"
-                      placeholder="Masukkan deskripsi acara" 
+                      placeholder="Masukkan Komentar" 
                       required></b-form-textarea>
               <b-button class="mt-4" variant="outline-default" block @click="addComment">Tambah Komentar</b-button>
             </b-form>
           </b-col>
         </b-row>
       </b-modal>
-  </dv>
+  </div>
 </template>
 
 <script>
@@ -133,21 +135,36 @@ export default {
         name: '',
         description: '',
         startDate: '',
-        endDate: ''
+        endDate: '',
+        division: null
       },
-      jobModal: {
-        name: '',
-        description: '',
-        startDate: '',
-        endDate: ''
-      },
+      divisionOptions: [
+        {value: null, text: 'Pilih divisi'},
+        {value: 'ketua', text: 'Ketua'},
+        {value: 'sekretaris', text: 'Sekretaris'},
+        {value: 'bendahara', text: 'Bendahara'},
+        {value: 'humas', text: 'Humas'},
+        {value: 'perlengkapan', text: 'Perlengkapan'},
+        {value: 'dasain', text: 'Desain Grafis'},
+        {value: 'konsumsi', text: 'Konsumsi'},
+        {value: 'dokumentasi', text: 'Dokumentasi'},
+        {value: 'keamanan', text: 'Keamanan'}
+      ],
       dateData: [],
-      taskId: ''
+      taskId: '',
+      comment: ''
     }
   },
   methods: {
+    setJob: function (id) {
+      this.$store.dispatch('loadJob', id)
+    },
     setTaskId: function (id) {
       this.taskId = id
+    },
+    addJob: function () {
+    },
+    addComment: function () {
     },
     removeJob: function (taskId, name, jobs, index) {
       // Remove job from GUI
@@ -183,6 +200,9 @@ export default {
       set (value) {
         this.$store.commit('SET_TASK', value)
       }
+    },
+    jobModal () {
+      return this.$store.getters.eventJob
     }
   }
 }

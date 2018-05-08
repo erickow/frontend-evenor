@@ -5,6 +5,7 @@ import user from './modules/user'
 import home from './modules/home'
 import event from './modules/event'
 import task from './modules/task'
+import vote from './modules/vote'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,8 @@ const store = new Vuex.Store({
     user,
     home,
     event,
-    task
+    task,
+    vote
   },
   getters
 })
