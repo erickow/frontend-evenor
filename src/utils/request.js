@@ -83,10 +83,9 @@ export function request (method, url, data, onSuccess, onFailed) {
     )
 }
 
-export function requestDownload (url, data, onSuccess, onFailed) {
+export function requestDownload (method, url, data, onSuccess, onFailed) {
   return Vue.axios({
-    withCredentials: true,
-    method: 'get',
+    method: method,
     url: BaseURL + url,
     headers: { 'Authorization': 'Bearer ' + getTokenLocal() },
     data: data,

@@ -1,5 +1,6 @@
-import { request } from '@/utils/request'
-import { setUser, getUsername } from '@/utils/auth'
+import { request, requestDownload } from '@/utils/request'
+import { setUser, getUsername, getUser } from '@/utils/auth'
+
 const user = {
   state: {
     SIGNED: {
@@ -7,9 +8,11 @@ const user = {
       password: '',
       roles: {},
       name: '',
+      photo: '',
       id: ''
     },
-    token: ''
+    token: '',
+    path: ''
   },
   mutations: {
     SET_SIGNED: (state, user) => {
@@ -17,10 +20,14 @@ const user = {
       state.SIGNED.password = user.password
       state.SIGNED.roles = user.roles
       state.SIGNED.name = user.name
+      state.SIGNED.photo = user.photo
       state.SIGNED.id = user.id
     },
     SET_TEMP: (state, token) => {
       state.token = token
+    },
+    SET_PATH: (state, path) => {
+      state.path = path
     }
   },
   actions: {
@@ -34,6 +41,21 @@ const user = {
             setUser(response.id)
           }
         )
+    },
+    uploadFoto: ({commit}, file) => {
+      return request('put', 'user/edit/photo/' + getUser(), file)
+    },
+    getPhoto: ({commit, getters}) => {
+      const photo = getters.user.photo
+      return requestDownload('post', 'user/photo/', 'photo=' + photo)
+      .then(
+        response => {
+          console.log(response)
+          const image = URL.createObjectURL(new Blob([response.data], {type: 'image/jpeg'}))
+          console.log(image)
+          commit('SET_PATH', response.data)
+        }
+      )
     }
   }
 }

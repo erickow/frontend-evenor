@@ -11,7 +11,8 @@ const getters = {
   eventTask: state => state.task.TASK,
   eventJob: state => state.task.JOB,
   eventUpcomingVote: state => state.vote.UPCOMING_VOTES,
-  eventHistoryVote: state => state.vote.HISTORY_VOTES
+  eventHistoryVote: state => state.vote.HISTORY_VOTES,
+  userPhoto: state => state.user.path
 }
 
 export default getters
