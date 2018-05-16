@@ -1,6 +1,6 @@
 <template>
   <header class="c-header">
-    <b-navbar class="customHeader" toggleable="md" type="dark" variant="dark">
+    <b-navbar class="customHeader pt-3 pb-3" toggleable="md" type="dark" variant="dark">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-navbar-brand href="#">EVENOR</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
@@ -16,7 +16,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-form right>
+          <!-- <b-nav-form right>
             <b-input-group>
               <b-form-input size="md" type="text" placeholder="Search"/>
               <b-input-group-append>
@@ -25,7 +25,7 @@
                 </b-button>
               </b-input-group-append>
             </b-input-group>
-          </b-nav-form>
+          </b-nav-form> -->
           <b-nav-item v-show="!autenticated" :to="{ path: '/account/login'}" right >
             Sign in or Sign up
           </b-nav-item>
@@ -86,3 +86,10 @@ export default {
   }
 }
 </script>
+
+<style>
+a:hover{
+  background-color: grey;
+}
+</style>
+

@@ -2,7 +2,7 @@
   <div class="c-profile-detail">
     <b-row>
       <b-col sm="12" md="5" lg="5">
-        <b-card class="h-100" >
+        <b-card class="h-100 boxShadowUp" >
           <b-img thumbnail fluid rounded :src="photo" width="400" height="400" blank-color="#777" alt="img" class="m-1" />
           <b-form>
             <b-form-file v-model="uploadImage" :state="Boolean(uploadImage)" placeholder="Pilih gambar..." accept=".jpg, jpeg, .png, .gif"></b-form-file>
@@ -15,14 +15,14 @@
         </b-card>
       </b-col>
       <b-col sm="12" md="7" lg="7">  
-        <b-card no-body class="h-100">
+        <b-card no-body class="h-100 boxShadowUp">
           <Polygraph/>   
         </b-card>        
       </b-col>
     </b-row>
     <b-row class="mt-2">
       <b-col sm="12" md="12" lg="12">
-        <b-card>
+        <b-card class="boxShadowUp">
           <h5>Nama : {{ user.name }}</h5>
           <h5>Email : {{ user.username }} </h5> 
         </b-card>

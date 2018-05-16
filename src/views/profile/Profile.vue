@@ -1,7 +1,7 @@
 <template>
   <div class="v-profile">
       <b-row class="mt-4" align-h="center">
-          <b-col sm="12" md="10" lg="10">
+          <b-col sm="12" md="11" lg="11">
             <b-card no-body>
               <b-tabs pills card vertical>
               <b-tab active>

@@ -1,9 +1,9 @@
 <template>
   <div class="c-organize-task">
-      <b-row class="" align-h="center">
-          <b-col sm="12" md="10" lg="10">
+      <b-row class="m-1" align-h="center">
+          <b-col sm="12" md="12" lg="12">
               <b-card>
-                <draggable v-model="tasks" 
+                <draggable v-model="tasks"
                            :options="{group:'tasks'}"
                            class="row">
                       <b-col v-for="mytasks in tasks" :key="mytasks.name" 

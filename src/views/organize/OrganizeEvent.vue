@@ -1,20 +1,20 @@
 <template>
   <div class="v-organize-event">
     <b-row align-h="center">
-          <b-col sm="12" md="10" lg="10">
+          <b-col sm="12" md="12" lg="12">
             <b-card-group deck
                   class="mb-3">
-              <b-col class="mt-4" xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeDetail')">
+              <b-col class="mt-4 " xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeDetail')">
                 <b-card bg-variant="info"
                         text-variant="white"
-                        class="text-center">
+                        class="text-center clickHover">
                     <p class="card-text"><icon scale="3" name="info-circle"></icon> <br> <strong>Detail</strong></p>
                 </b-card>
               </b-col>
               <b-col class="mt-4" xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeTask')">
                 <b-card bg-variant="info"
                         text-variant="white"
-                        class="text-center">
+                        class="text-center clickHover">
                     <p class="card-text"><icon scale="3" name="thumb-tack"></icon> <br> <strong>Task</strong></p>
                 </b-card>
               </b-col>
@@ -67,3 +67,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.card-body:hover{
+  background: darkturquoise !important;
+}
+</style>
+

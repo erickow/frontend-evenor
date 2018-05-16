@@ -1,7 +1,7 @@
 <template>
   <div class="c-organize-detail">
-      <b-row class="" align-h="center">
-          <b-col sm="12" md="10" lg="10">
+      <b-row class="m-1" align-h="center">
+          <b-col sm="12" md="12" lg="12">
               <b-card>
                 <b-row>
                 <b-col sm="12" md="7" lg="7">
@@ -14,7 +14,7 @@
                 </b-card>
                 </b-col>
                 <b-col sm="12" md="5" lg="5">
-                    <b-card class="h-100" >
+                    <b-card class="h-100 boxShadowUp" >
                         <b-table :sort-by.sync="sortBy"
                                 :sort-desc.sync="sortDesc"
                                 :items="items"
@@ -29,14 +29,14 @@
               </b-row>
               <b-row class="mt-4" align-h="center">
                 <b-col sm="12" md="12" lg="12">
-                    <b-card>
+                    <b-card class="boxShadowUp">
                         <vote></vote>
                     </b-card>
                 </b-col>
                </b-row>
               <b-row class="mt-4" align-h="center">
                 <b-col sm="12" md="12" lg="12">
-                    <b-card>
+                    <b-card class="boxShadowUp">
                         <h1>Recent Activity</h1>
                         
                     </b-card>
