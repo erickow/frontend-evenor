@@ -1,4 +1,5 @@
 import { request } from '@/utils/request'
+import { getUser } from '@/utils/auth'
 
 const vote = {
   state: {
@@ -31,7 +32,7 @@ const vote = {
         )
     },
     createVote: ({commit}, [eventId, data]) => {
-      return request('post', 'vote/event/' + eventId, data)
+      return request('post', 'vote/event/' + eventId + '/' + getUser(), data)
     }
   }
 }

@@ -22,7 +22,7 @@
        
     </b-carousel>
         <b-row class="boxUp" align-h="center">
-          <b-col  sm="12" md="10" lg="10">
+          <b-col  sm="12" md="7" lg="7">
           <b-card  class="text-center cardUp">
             <h1>Make Your Event Organized</h1>
             <b-button v-b-modal="'eventForm'">Create Event</b-button>
@@ -88,6 +88,8 @@
         
         <date-picker class="mt-4" v-model="dateData" range type="datetime" format="yyyy-MM-dd HH:mm:ss" lang="en" confirm></date-picker> 
         
+        <b-form-file v-model="uploadImage" :state="Boolean(uploadImage)" placeholder="Pilih gambar..." accept=".jpg, jpeg, .png, .gif"></b-form-file>
+
         <b-button class="mt-4" variant="outline-primary" block @click="addEvent">Buat Acara</b-button>
       </b-form>
     </b-modal>
@@ -114,7 +116,8 @@ export default {
         startDate: '',
         endDate: ''
       },
-      dateData: []
+      dateData: [],
+      uploadImage: {}
     }
   },
   methods: {
@@ -123,7 +126,18 @@ export default {
       this.form.startDate = moment(this.dateData[0]).format('DD-MM-YYYY HH:mm:ss')
       this.form.endDate = moment(this.dateData[1]).format('DD-MM-YYYY HH:mm:ss')
       console.log(this.form)
-      this.$store.dispatch('createEvent', this.form)
+
+      const data = new FormData()
+      console.log(this.uploadImage)
+      data.append('file', this.uploadImage, this.uploadImage.name)
+      data.append('name', this.form.name)
+      data.append('description', this.form.description)
+      data.append('setParticipant', this.form.setParticipant)
+      data.append('setComittee', this.form.setComittee)
+      data.append('startDate', this.form.startDate)
+      data.append('endDate', this.form.endDate)
+
+      this.$store.dispatch('createEvent', data)
     },
     clearForm () {
     }

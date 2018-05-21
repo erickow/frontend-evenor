@@ -4,7 +4,7 @@
       <b-tabs pills card>
         <b-tab title="Upcomming Vote" active>
           <b-row>
-            <b-col sm="12" md="6" lg="6" 
+            <b-col sm="12" md="12" lg="12" 
                   v-for="(upcoming, index) in myUpcomingVotes"
                   :key="index"
                   class="mt-2"
@@ -21,7 +21,7 @@
         </b-tab>
         <b-tab title="History Vote">
           <b-row>
-            <b-col sm="12" md="6" lg="6" 
+            <b-col sm="12" md="12" lg="12" 
                   v-for="(history, index) in myHistoryVotes"
                   :key="index"
                   class="mt-2"
@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   name: 'c-vote',
   created () {
@@ -97,7 +98,9 @@ export default {
   },
   methods: {
     addVote: function () {
+      this.vote.endDate = moment(this.voteDate).format('DD-MM-YYYY HH:mm:ss')
       console.log(this.vote)
+      this.$store.dispatch('createVote', [this.$route.params.eventId, this.vote])
     },
     addAnswer: function () {
       this.voteAnswerLength = this.voteAnswerLength + 1

@@ -70,7 +70,7 @@ export default {
 
 <style scoped>
 .card-body:hover{
-  background: darkturquoise !important;
+  background: darkturquoise !important ;
 }
 </style>
 
