@@ -13,13 +13,24 @@ const home = {
     }
   },
   actions: {
-    loadHomeEvents: ({commit}) => {
+    loadHomeEvents: ({commit, dispatch}) => {
       return request('get', 'home/event/')
         .then(
           response => {
+            response.forEach(async (item, index) => {
+              console.log(item.photo)
+              await dispatch('getPhotoEvent', item.photo)
+              item.photo = await dispatch('getPhotoPath')
+              console.log(item.photo)
+              return item
+            })
+            console.log(response)
             commit('SET_HOME_EVENTS', response)
           }
         )
+    },
+    getPhotoPath: ({commit, getters}) => {
+      return getters.eventPhoto
     },
     isAuth: ({commit}, data) => {
       return commit('SET_AUTH', data)

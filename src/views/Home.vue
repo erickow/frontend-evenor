@@ -10,11 +10,11 @@
                 img-height="300"
     >
     <b-carousel-slide>
-      <img slot="img" class="d-block w-100" height="450"
+      <img slot="img" class="d-block w-100" height="550"
            :src="require('../assets/img/event1.jpg')" alt="image slot">
     </b-carousel-slide>
     <b-carousel-slide>
-      <img slot="img" class="d-block w-100" height="450"
+      <img slot="img" class="d-block w-100" height="550"
            :src="require('../assets/img/event2.jpg')" alt="image slot">
     </b-carousel-slide>
       
@@ -23,27 +23,35 @@
     </b-carousel>
         <b-row class="boxUp" align-h="center">
           <b-col  sm="12" md="7" lg="7">
-          <b-card  class="text-center cardUp">
+          <div  class="text-center cardUp">
             <h1>Make Your Event Organized</h1>
-            <b-button v-b-modal="'eventForm'">Create Event</b-button>
-          </b-card>
+            <b-button variant="primary" v-b-modal="'eventForm'">Create Event</b-button>
+          </div>
 
         </b-col>
         </b-row>
       </b-col>
     </b-row>
     
-    <b-row  align-h="center">
-      <b-col sm="12" md="11" lg="11">
+    <b-row  class="eventList" align-h="center">
+      <b-col sm="12" md="10" lg="10">
+        <h3>Recent Event</h3>
         <b-card-group tag="div">
-        <b-col class="mt-5" v-for="(events, index) in homeEvents" :key="index" 
+        <b-col class="mt-3" v-for="(events, index) in homeEvents" :key="index" 
                 sm="11" md="6" lg="4">
           <b-link class="card-link" :to="{ path: 'event/detail/' + events.id}">
             <b-card
-              class="boxShadowUp"
+              class="boxShadowUp h-100"
               footer-tag="footer" no-body>
-              <b-img-lazy
+              <b-img-lazy v-if="events.photo === '' || events.photo === null || events.photo === 'undefined'"
                 :src="require('../assets/img/dummy.jpg')"
+                alt="Img"
+                height="200" 
+                blank-color="#bbb"
+                top>
+              </b-img-lazy>
+              <b-img-lazy v-else
+                :src="imageView(events.photo)"
                 alt="Img"
                 height="200" 
                 blank-color="#bbb"
@@ -87,7 +95,7 @@
                   required></b-form-textarea>
         
         <date-picker class="mt-4" v-model="dateData" range type="datetime" format="yyyy-MM-dd HH:mm:ss" lang="en" confirm></date-picker> 
-        
+        <br><br>
         <b-form-file v-model="uploadImage" :state="Boolean(uploadImage)" placeholder="Pilih gambar..." accept=".jpg, jpeg, .png, .gif"></b-form-file>
 
         <b-button class="mt-4" variant="outline-primary" block @click="addEvent">Buat Acara</b-button>
@@ -117,7 +125,8 @@ export default {
         endDate: ''
       },
       dateData: [],
-      uploadImage: {}
+      uploadImage: {},
+      eventData: {}
     }
   },
   methods: {
@@ -140,6 +149,9 @@ export default {
       this.$store.dispatch('createEvent', data)
     },
     clearForm () {
+    },
+    imageView (data) {
+      return URL.createObjectURL(new Blob([data], {type: 'image/jpeg'}))
     }
   },
   computed: {
@@ -159,11 +171,19 @@ export default {
     margin-right: 0;
 }
 .boxUp {
-  margin-top: -80px;
+  margin-top: -300px;
   line-height: 2;
 }
 .cardUp {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: linear-gradient( rgba(255, 255, 255, 0.9) 0%, white 45%)
+  color: white;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: linear-gradient( rgba(255, 255, 255, 0.9) 0%, white 45%) */
+  background: rgba(0, 0, 0, 0) !important;
+}
+#carousel1{
+  margin-top: -80px;
+}
+.eventList{
+  margin-top: 220px;
 }
 </style>

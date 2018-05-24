@@ -91,5 +91,9 @@ export default {
 a:hover{
   background-color: grey;
 }
+.customHeader{
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.4) !important;
+}
 </style>
 

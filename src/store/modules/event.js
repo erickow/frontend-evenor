@@ -1,4 +1,4 @@
-import { request } from '@/utils/request'
+import { request, requestDownload } from '@/utils/request'
 import { getUser } from '@/utils/auth'
 
 const event = {
@@ -14,7 +14,8 @@ const event = {
     MY_UPCOMING_EVENT: [],
     MY_HISTORY_EVENT: [],
     EVENT_PARTICIPANT: [],
-    EVENT_COMITTEE: []
+    EVENT_COMITTEE: [],
+    path: ''
   },
   mutations: {
     SET_EVENT_DETAIL: (state, event) => {
@@ -36,6 +37,9 @@ const event = {
     },
     SET_EVENT_COMITTEE: (state, comittee) => {
       state.EVENT_COMITTEE = comittee
+    },
+    SET_EVENT_PHOTO_PATH: (state, path) => {
+      state.path = path
     }
   },
   actions: {
@@ -82,6 +86,15 @@ const event = {
     },
     createEvent: ({commit}, data) => {
       return request('post', 'event/' + getUser(), data)
+    },
+    getPhotoEvent: ({commit}, data) => {
+      return requestDownload('post', 'user/photo/', 'photo=' + data)
+        .then(
+          async response => {
+            console.log(response.data)
+            commit('SET_EVENT_PHOTO_PATH', await response.data)
+          }
+        )
     }
   }
 }
