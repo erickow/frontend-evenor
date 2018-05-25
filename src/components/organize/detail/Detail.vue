@@ -5,13 +5,15 @@
               <b-card>
                 <b-row>
                 <b-col sm="12" md="7" lg="7">
-                    <b-card 
-                    no-body
-                    :img-src="require('@/assets/img/dummy.jpg')"
-                    img-alt="Image"
-                    img-top>
-                
-                </b-card>
+                    <b-card no-body>
+                      <b-img-lazy
+                        :src="imageView(event.photo)"
+                        alt="Img"
+                        height="400" 
+                        blank-color="#bbb"
+                        top>
+                      </b-img-lazy>
+                    </b-card>
                 </b-col>
                 <b-col sm="12" md="5" lg="5">
                     <b-card class="h-100 boxShadowUp" >
@@ -76,6 +78,11 @@ export default {
         { key: 'comittee.name', sortable: true },
         { key: 'score', sortable: true }
       ]
+    }
+  },
+  methods: {
+    imageView (data) {
+      return URL.createObjectURL(new Blob([data], { type: 'image/jpeg' }))
     }
   },
   computed: {

@@ -9,6 +9,7 @@ const event = {
       comittee: {},
       startDate: '',
       endDate: '',
+      photo: '',
       id: ''
     },
     MY_UPCOMING_EVENT: [],
@@ -23,6 +24,7 @@ const event = {
       state.EVENT.comittee = event.comittee
       state.EVENT.name = event.name
       state.EVENT.id = event.id
+      state.EVENT.photo = event.photo
       state.EVENT.startDate = event.startDate
       state.EVENT.endDate = event.endDate
     },
@@ -43,26 +45,40 @@ const event = {
     }
   },
   actions: {
-    loadEvent: ({commit}, eventId) => {
+    loadEvent: ({commit, dispatch}, eventId) => {
       return request('get', 'home/detail/' + eventId)
         .then(
-          response => {
+          async response => {
+            console.log(response)
+            await dispatch('getPhotoEvent', response.photo)
+            response.photo = await dispatch('getPhotoPath')
+            console.log(response)
             commit('SET_EVENT_DETAIL', response)
           }
         )
     },
-    loadMyUpcomingEvent: ({commit}, userId) => {
+    loadMyUpcomingEvent: ({commit, dispatch}, userId) => {
       return request('get', 'event/upcoming/' + userId)
         .then(
           response => {
+            response.forEach(async (item, index) => {
+              await dispatch('getPhotoEvent', item.event.photo)
+              item.event.photo = await dispatch('getPhotoPath')
+              return item
+            })
             commit('SET_MY_UPCOMING_EVENT', response)
           }
         )
     },
-    loadMyHistoryEvent: ({commit}, userId) => {
+    loadMyHistoryEvent: ({commit, dispatch}, userId) => {
       return request('get', 'event/history/' + userId)
         .then(
           response => {
+            response.forEach(async (item, index) => {
+              await dispatch('getPhotoEvent', item.event.photo)
+              item.event.photo = await dispatch('getPhotoPath')
+              return item
+            })
             commit('SET_MY_HISTORY_EVENT', response)
           }
         )
@@ -88,7 +104,7 @@ const event = {
       return request('post', 'event/' + getUser(), data)
     },
     getPhotoEvent: ({commit}, data) => {
-      return requestDownload('post', 'user/photo/', 'photo=' + data)
+      return requestDownload('post', 'home/photo/', 'photo=' + data)
         .then(
           async response => {
             console.log(response.data)

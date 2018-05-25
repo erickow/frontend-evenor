@@ -38,9 +38,6 @@ export default {
   components: {
     Polygraph
   },
-  created () {
-    this.$store.dispatch('getPhoto')
-  },
   data () {
     return {
       uploadImage: {}

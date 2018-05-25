@@ -13,8 +13,8 @@
                   class="h-100"
                   >
                 <b-row>
-                  <b-col sm="12" md="4" lg="4">
-                    <b-img thumbnail fluid rounded blank width="170" height="150" blank-color="#777" alt="img" class="m-1" />
+                  <b-col class="p-0 m-0" sm="12" md="4" lg="4">
+                    <b-img thumbnail fluid rounded :src="imageView(upcoming.event.photo)" height="20" blank-color="#777" alt="img" class="m-1" />
                   </b-col>
                   <b-col sm="12" md="8" lg="8">
                     <h5><strong>{{ upcoming.event.name.slice(0,20) }}...</strong></h5>
@@ -38,8 +38,8 @@
                   class="h-100"
                   >
                 <b-row>
-                  <b-col sm="12" md="4" lg="4">
-                    <b-img thumbnail fluid rounded blank width="170" height="150" blank-color="#777" alt="img" class="m-1" />
+                  <b-col class="p-0 m-0" sm="12" md="4" lg="4">
+                    <b-img thumbnail fluid rounded :src="imageView(history.event.photo)" height="20" blank-color="#777" alt="img" class="m-1" />
                   </b-col>
                   <b-col sm="12" md="8" lg="8">
                     <h5><strong>{{ history.event.name.slice(0,20) }}...</strong></h5>
@@ -60,6 +60,12 @@ export default {
   name: 'c-profile-event',
   data () {
     return {
+    }
+  },
+  methods: {
+    imageView (data) {
+      console.log(data)
+      return URL.createObjectURL(new Blob([data], {type: 'image/jpeg'}))
     }
   },
   computed: {

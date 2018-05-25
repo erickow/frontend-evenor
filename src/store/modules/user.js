@@ -31,12 +31,13 @@ const user = {
     }
   },
   actions: {
-    SET_USER: ({commit}) => {
+    SET_USER: ({commit, dispatch}) => {
       // let url = encodeURIComponent(username)
       // console.log(url)
       return request('post', 'user/account/', 'username=' + getUsername())
         .then(
-          response => {
+          async response => {
+            response.photo = dispatch('getPhoto', await response.photo)
             commit('SET_SIGNED', response)
             setUser(response.id)
           }
@@ -45,15 +46,12 @@ const user = {
     uploadFoto: ({commit}, file) => {
       return request('put', 'user/edit/photo/' + getUser(), file)
     },
-    getPhoto: ({commit, getters}) => {
-      const photo = getters.user.photo
-      return requestDownload('post', 'user/photo/', 'photo=' + photo)
+    getPhoto: ({commit, getters}, data) => {
+      return requestDownload('post', 'home/photo/', 'photo=' + data)
       .then(
-        response => {
+        async response => {
           console.log(response)
-          const image = URL.createObjectURL(new Blob([response.data], {type: 'image/jpeg'}))
-          console.log(image)
-          commit('SET_PATH', response.data)
+          commit('SET_PATH', await response.data)
         }
       )
     }
