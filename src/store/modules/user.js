@@ -1,5 +1,5 @@
 import { request, requestDownload } from '@/utils/request'
-import { setUser, getUsername, getUser } from '@/utils/auth'
+import { setUser, getUsername, getUser, setComittee } from '@/utils/auth'
 
 const user = {
   state: {
@@ -40,6 +40,14 @@ const user = {
             response.photo = dispatch('getPhoto', await response.photo)
             commit('SET_SIGNED', response)
             setUser(response.id)
+          }
+        )
+    },
+    setComittee: ({commit}, eventId) => {
+      return request('post', 'user/comittee/' + getUser(), 'eventId=' + eventId)
+        .then(
+          response => {
+            setComittee(response.id)
           }
         )
     },

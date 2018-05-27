@@ -53,6 +53,7 @@ const event = {
             await dispatch('getPhotoEvent', response.photo)
             response.photo = await dispatch('getPhotoPath')
             console.log(response)
+            dispatch('setComittee', eventId)
             commit('SET_EVENT_DETAIL', response)
           }
         )

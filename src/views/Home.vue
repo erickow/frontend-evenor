@@ -25,7 +25,7 @@
           <b-col  sm="12" md="7" lg="7">
           <div  class="text-center cardUp">
             <h1>Make Your Event Organized</h1>
-            <b-button variant="primary" v-b-modal="'eventForm'">Create Event</b-button>
+            <b-button size="lg" variant="outline-light" v-b-modal="'eventForm'">Create Event</b-button>
           </div>
 
         </b-col>

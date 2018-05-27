@@ -1,5 +1,5 @@
 import { request } from '@/utils/request'
-import { getUser } from '@/utils/auth'
+import { getUser, getComittee } from '@/utils/auth'
 
 const vote = {
   state: {
@@ -31,8 +31,23 @@ const vote = {
           }
         )
     },
-    createVote: ({commit}, [eventId, data]) => {
+    createVote: ({commit, dispatch}, [eventId, data]) => {
       return request('post', 'vote/event/' + eventId + '/' + getUser(), data)
+        .then(
+          response => {
+            dispatch('loadUpcomingVotes', eventId)
+            dispatch('loadHistoryVotes', eventId)
+          }
+        )
+    },
+    voting: ({commit, dispatch}, [voteId, answerId, eventId]) => {
+      return request('post', 'vote/voter/' + voteId + '/' + answerId + '/' + getComittee())
+        .then(
+          response => {
+            dispatch('loadUpcomingVotes', eventId)
+            dispatch('loadHistoryVotes', eventId)
+          }
+        )
     }
   }
 }
