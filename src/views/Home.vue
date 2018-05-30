@@ -113,9 +113,14 @@ export default {
   name: 'v-home',
   created () {
     this.$store.dispatch('loadHomeEvents')
+    this.loading = true
+    setTimeout(() => {
+      this.loading = false
+    }, 3000)
   },
   data () {
     return {
+      loading: '',
       form: {
         name: '',
         description: '',

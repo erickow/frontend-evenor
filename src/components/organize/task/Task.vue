@@ -5,9 +5,9 @@
               <b-card>
                 <draggable v-model="tasks"
                            :options="{group:'tasks'}"
-                           class="row">
+                           class="row" @end="listMoved">
                       <b-col v-for="mytasks in tasks" :key="mytasks.name" 
-                              sm="12" md="3" lg="3">
+                              sm="12" md="3" lg="3" >
                         <b-card class="mt-2 p-2" 
                               bg-variant="default" 
                               text-variant="dark" 
@@ -20,7 +20,8 @@
                             class="mb-0">{{ mytasks.name }}</h6>
                         <div class="mytasks-contents">
                           <draggable v-model="mytasks.jobs" 
-                                  :options="{group:'taskJobs'}">
+                                  :options="{group:'jobs'}"
+                                  @change="taskMoved">
                             <transition-group name="list-task">
                               <b-card v-for="(task, index) in mytasks.jobs" 
                                   v-bind:key="task.name"
@@ -96,9 +97,26 @@
         <b-row class="p-2" align-h="center">
           <b-col sm="12" md="7" lg="7">
             <h3>{{ jobModal.name }}</h3>
+            <small>{{ jobModal.endDate }}</small>
             <p>{{ jobModal.description }}</p>
+
+            <b-button size="md" variant="outline-primary" v-for="(volunteer, index) in jobModal.comittees" :key="index">
+              <b-badge variant="primary" pill>
+              {{ volunteer.comittee.name }}
+              </b-badge>
+            </b-button> <br><br>
             <!-- <h5>Tanggal Mulai : {{ jobModal.startDate }} </h5>
             <h5>Tanggal Selesai : {{ jobModal.endDate }}</h5> -->
+
+            <b-form-checkbox id="checkbox1"
+                     v-model="jobModal.completion"
+                     value="true"
+                     unchecked-value="false"
+                     size="md"
+                     @change="jobCompletion()">
+              Rekap Tugas
+              {{ completion }}
+            </b-form-checkbox>
           </b-col>
           <b-col sm="12" md="5" lg="5">
             <b-form >
@@ -118,6 +136,7 @@
 
 <script>
 import draggable from 'vuedraggable'
+import moment from 'moment'
 export default {
   name: 'c-organize-task',
   components: {
@@ -152,7 +171,8 @@ export default {
       ],
       dateData: [],
       taskId: '',
-      comment: ''
+      comment: '',
+      completion: ''
     }
   },
   methods: {
@@ -190,6 +210,32 @@ export default {
     },
     addTask: function () {
       this.$store.dispatch('createTask', [this.$route.params.eventId, this.formTask])
+    },
+    taskMoved: function (event) {
+      const evt = event.added || event.moved
+      console.log(evt)
+      if (evt === undefined) { return }
+      const element = evt.element
+      const listIndex = this.tasks.findIndex((task) => {
+        return task.jobs.find((card) => {
+          return card.id === element.id
+        })
+      })
+      var data = new FormData()
+      data.append('card[list_id]', this.tasks[listIndex].id)
+      data.append('card[position]', evt.newIndex + 1)
+      for (var pair of data.entries()) {
+        console.log(pair[0] + ', ' + pair[1])
+      }
+    },
+    listMoved: function (event) {
+
+    },
+    jobCompletion: function () {
+      var form = new FormData()
+      form.append('completion', !this.jobModal.completion)
+      form.append('dateCompletion', moment(new Date()).format('DD-MM-YYYY HH:mm:ss'))
+      this.$store.dispatch('jobCompletion', [this.jobModal.id, form])
     }
   },
   computed: {

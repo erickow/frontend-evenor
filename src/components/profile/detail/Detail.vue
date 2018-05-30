@@ -1,5 +1,16 @@
 <template>
-  <div class="c-profile-detail">
+  <div v-if="loading" class="centeringContent">
+        <b-row align-h="center" align-v="center">
+            <b-col sm="12" md="12" lg="12">
+              <epic-spiners
+                :animation-duration="800"
+                :size="100"
+                color="#ff1d5e"
+              />
+            </b-col>
+        </b-row>
+  </div>
+  <div v-else class="c-profile-detail">
     <b-row>
       <b-col sm="12" md="5" lg="5">
         <b-card class="h-100 boxShadowUp" >
@@ -38,8 +49,15 @@ export default {
   components: {
     Polygraph
   },
+  created () {
+    this.loading = true
+    setTimeout(() => {
+      this.loading = false
+    }, 2000)
+  },
   data () {
     return {
+      loading: '',
       uploadImage: {}
     }
   },

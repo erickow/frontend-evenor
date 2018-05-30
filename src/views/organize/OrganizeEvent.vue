@@ -1,7 +1,7 @@
 <template>
   <div class="v-organize-event">
     <b-row align-h="center">
-          <b-col sm="12" md="12" lg="12">
+          <b-col sm="12" md="10" lg="10">
             <b-card-group deck
                   class="mb-3">
               <b-col class="mt-4 " xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeDetail')">

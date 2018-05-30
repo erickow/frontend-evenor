@@ -39,6 +39,15 @@ const task = {
             commit('SET_JOB', response)
           }
         )
+    },
+    jobCompletion: ({commit, dispatch}, [jobId, data]) => {
+      console.log(jobId, data)
+      return request('post', 'task/job/' + jobId + '/rekap', data)
+        .then(
+          response => {
+            dispatch('loadJob', jobId)
+          }
+        )
     }
   }
 }

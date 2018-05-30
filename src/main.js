@@ -13,9 +13,11 @@ import VueAxios from 'vue-axios'
 import DatePicker from 'vue2-datepicker'
 import store from './store/index'
 import VueAlertify from 'vue-alertify'
+import { SwappingSquaresSpinner } from 'epic-spinners'
 
 Vue.component('icon', Icon)
 Vue.component('date-picker', DatePicker)
+Vue.component('epic-spiners', SwappingSquaresSpinner)
 Vue.use(VueAxios, axios, VueAlertify)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
@@ -26,5 +28,5 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App, Icon, DatePicker }
+  components: { App, Icon, DatePicker, SwappingSquaresSpinner }
 })
