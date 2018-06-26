@@ -1,6 +1,6 @@
 <template>
   <header class="c-header">
-    <b-navbar class="customHeader pt-3 pb-3" toggleable="md" type="dark" variant="dark">
+    <b-navbar class="customHeader pt-3 pb-3" toggleable="md" type="light" variant="light">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-navbar-brand href="#">EVENOR</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
@@ -89,11 +89,11 @@ export default {
 
 <style>
 a:hover{
-  background-color: grey;
+  background-color: white;
 }
 .customHeader{
   z-index: 99;
-  background: rgba(0, 0, 0, 0.4) !important;
+  background: rgba(10, 100, 255, 0.7) !important;
 }
 </style>
 

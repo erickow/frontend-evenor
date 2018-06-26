@@ -42,6 +42,9 @@ const event = {
     },
     SET_EVENT_PHOTO_PATH: (state, path) => {
       state.path = path
+    },
+    SET_EVENT_COMITTEE_PHOTO_PATH: (state, path) => {
+      state.path = path
     }
   },
   actions: {
@@ -93,10 +96,16 @@ const event = {
         }
       )
     },
-    loadEventComittee: ({commit}, eventId) => {
+    loadEventComittee: ({commit, dispatch}, eventId) => {
       return request('get', 'event/comittee/' + eventId)
       .then(
         response => {
+          response.forEach(async (item, index) => {
+            await dispatch('getPhotoComittee', item.comittee.photo)
+            item.comittee.photo = URL.createObjectURL(new Blob([await dispatch('getPhotoPath')], { type: 'image/jpeg' }))
+            return item
+          })
+          console.log(response)
           commit('SET_EVENT_COMITTEE', response)
         }
       )
@@ -110,6 +119,15 @@ const event = {
           async response => {
             console.log(response.data)
             commit('SET_EVENT_PHOTO_PATH', await response.data)
+          }
+        )
+    },
+    getPhotoComittee: ({commit}, data) => {
+      return requestDownload('post', 'home/photo/', 'photo=' + data)
+        .then(
+          async response => {
+            console.log(response.data)
+            commit('SET_EVENT_COMITTEE_PHOTO_PATH', await response.data)
           }
         )
     }
