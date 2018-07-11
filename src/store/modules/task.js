@@ -40,6 +40,14 @@ const task = {
           }
         )
     },
+    createJob: ({dispatch}, [eventId, taskId, data]) => {
+      return request('post', 'job/' + taskId, data)
+      .then(
+        response => {
+          dispatch('loadTask', eventId)
+        }
+      )
+    },
     jobCompletion: ({commit, dispatch}, [jobId, data]) => {
       console.log(jobId, data)
       return request('post', 'task/job/' + jobId + '/rekap', data)

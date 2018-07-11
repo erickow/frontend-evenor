@@ -124,8 +124,8 @@ export default {
       form: {
         name: '',
         description: '',
-        setParticipant: 0,
-        setComittee: 0,
+        setParticipant: false,
+        setComittee: false,
         startDate: '',
         endDate: ''
       },

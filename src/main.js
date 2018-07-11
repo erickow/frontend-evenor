@@ -14,10 +14,12 @@ import DatePicker from 'vue2-datepicker'
 import store from './store/index'
 import VueAlertify from 'vue-alertify'
 import { SwappingSquaresSpinner } from 'epic-spinners'
+import vSelect from 'vue-select'
 
 Vue.component('icon', Icon)
 Vue.component('date-picker', DatePicker)
 Vue.component('epic-spiners', SwappingSquaresSpinner)
+Vue.component('v-select', vSelect)
 Vue.use(VueAxios, axios, VueAlertify)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false

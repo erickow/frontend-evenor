@@ -6,11 +6,13 @@ const event = {
     EVENT: {
       name: '',
       description: '',
-      comittee: {},
+      adminEvent: {},
       startDate: '',
       endDate: '',
       photo: '',
-      id: ''
+      id: '',
+      setComittee: '',
+      setParticipant: ''
     },
     MY_UPCOMING_EVENT: [],
     MY_HISTORY_EVENT: [],
@@ -21,12 +23,14 @@ const event = {
   mutations: {
     SET_EVENT_DETAIL: (state, event) => {
       state.EVENT.description = event.description
-      state.EVENT.comittee = event.comittee
+      state.EVENT.adminEvent = event.adminEvent
       state.EVENT.name = event.name
       state.EVENT.id = event.id
       state.EVENT.photo = event.photo
       state.EVENT.startDate = event.startDate
       state.EVENT.endDate = event.endDate
+      state.EVENT.setComittee = event.setComittee
+      state.EVENT.setParticipant = event.setParticipant
     },
     SET_MY_UPCOMING_EVENT: (state, event) => {
       state.MY_UPCOMING_EVENT = event
@@ -56,7 +60,9 @@ const event = {
             await dispatch('getPhotoEvent', response.photo)
             response.photo = await dispatch('getPhotoPath')
             console.log(response)
-            dispatch('setComittee', eventId)
+            if (getUser() != null) {
+              dispatch('setComittee', eventId)
+            }
             commit('SET_EVENT_DETAIL', response)
           }
         )
@@ -102,7 +108,8 @@ const event = {
         response => {
           response.forEach(async (item, index) => {
             await dispatch('getPhotoComittee', item.comittee.photo)
-            item.comittee.photo = URL.createObjectURL(new Blob([await dispatch('getPhotoPath')], { type: 'image/jpeg' }))
+            item.comittee.photo = await dispatch('getPhotoPath')
+            console.log(item.comittee.photo)
             return item
           })
           console.log(response)

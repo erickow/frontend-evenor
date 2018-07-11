@@ -4,7 +4,7 @@ export default {
   extends: Radar,
   mounted () {
     this.renderChart({
-      labels: ['Pengalaman', 'Komunikasi', 'Desain', 'Tanggung Jawab', 'Disiplin'],
+      labels: ['Leadership', 'Authority', 'Decision', 'Flexibility'],
       datasets: [
         {
           label: 'Data Diri ',
@@ -14,7 +14,7 @@ export default {
           pointBorderColor: '#fff',
           pointHoverBackgroundColor: '#fff',
           pointHoverBorderColor: 'rgba(179,181,198,1)',
-          data: [65, 39, 61, 56, 75]
+          data: [65, 49, 61, 56]
         }
       ]
     }, {responsive: true, maintainAspectRatio: false})

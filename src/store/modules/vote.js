@@ -37,6 +37,7 @@ const vote = {
           response => {
             dispatch('loadUpcomingVotes', eventId)
             dispatch('loadHistoryVotes', eventId)
+            dispatch('loadEventComittee', eventId)
           }
         )
     },
@@ -46,6 +47,7 @@ const vote = {
           response => {
             dispatch('loadUpcomingVotes', eventId)
             dispatch('loadHistoryVotes', eventId)
+            dispatch('loadEventComittee', eventId)
           }
         )
     }

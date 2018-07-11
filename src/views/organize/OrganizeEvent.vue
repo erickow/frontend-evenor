@@ -5,28 +5,28 @@
             <b-card class="boxShadowUp">
             <b-card-group
                   class="mb-3">
-              <b-col class="menu mt-4 " xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeDetail')">
+              <b-col class="menu mt-1 " xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeDetail')">
                 <b-card bg-variant="white"
                         text-variant="dark"
                         class="text-center clickHover" no-body>
                     <p class="card-text"><b-img fluid :src="require('@/assets/img/icon/home.png')" width="100" height="100" blank-color="#777" alt="img" class="m-1" /> <br> <strong>Detail</strong></p>
                 </b-card>
               </b-col>
-              <b-col class="menu mt-4" xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeTask')">
+              <b-col class="menu mt-1" xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeTask')">
                 <b-card bg-variant="white"
                         text-variant="dark"
                         class="text-center clickHover" no-body>
                     <p class="card-text"><b-img fluid :src="require('@/assets/img/icon/task.png')" width="100" height="100" blank-color="#777" alt="img" class="m-1" /> <br> <strong>Task</strong></p>
                 </b-card>
               </b-col>
-              <b-col class="menu mt-4" xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeOrganization')">
+              <b-col class="menu mt-1" xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeOrganization')">
                 <b-card bg-variant="white"
                         text-variant="dark"
                         class="text-center" no-body>
                     <p class="card-text"><b-img fluid :src="require('@/assets/img/icon/profile.png')" width="100" height="100" blank-color="#777" alt="img" class="m-1" /> <br> <strong>Panitia</strong></p>
                 </b-card>
               </b-col>
-              <b-col class="menu mt-4" xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeSetting')">
+              <b-col class="menu mt-1" xs="6" sm="6" md="3" lg="3" @click="swapComponent('OrganizeSetting')">
                 <b-card bg-variant="white"
                         text-variant="dark"
                         class="text-center" no-body>
@@ -50,8 +50,15 @@
                                 :per-page="4"
                                 :current-page="currentPage">
                           <template slot="comittee.photo" slot-scope="data">
+                            <!-- <b-img-lazy
+                              :src="imageView(data)"
+                              alt="Img"
+                              height="200" 
+                              blank-color="#bbb"
+                              top>
+                            </b-img-lazy> -->
                             <b-img-lazy
-                              :src="data"
+                              :src="imageView(data)"
                               alt="Img"
                               height="50" 
                               blank-color="#bbb"
@@ -109,6 +116,9 @@ export default {
   methods: {
     swapComponent: function (component) {
       this.components = component
+    },
+    imageView (data) {
+      return URL.createObjectURL(new Blob([data.value], { type: 'image/jpeg' }))
     }
   },
   computed: {

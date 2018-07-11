@@ -23,10 +23,10 @@
                         <br><br><br><br><br><br>
                         <b-row align-v="end">
                             <b-col sm="12" md="5" lg="5">
-                                <b-button href="#" variant="primary">Daftar Peserta</b-button>
+                                <b-button @click="setComittee()" v-show="event.setComittee" variant="primary">Daftar Panitia</b-button>
                             </b-col>
                             <b-col sm="12" md="5" lg="5">
-                                <b-button href="#" variant="primary">Daftar Panitia</b-button>
+                                <b-button @click="setParticipant()" v-show="event.setParticipant" variant="primary">Daftar Partisipan</b-button>
                             </b-col>
                         </b-row>
                         
@@ -69,11 +69,11 @@
           </b-col>
       </b-row>
   </div>
-    
-  </div>  
+      
 </template>
 
 <script>
+import { confirmationAlert } from '@/utils/alert'
 export default {
   name: 'v-detail-event',
   created () {
@@ -86,6 +86,16 @@ export default {
   methods: {
     imageView (data) {
       return URL.createObjectURL(new Blob([data], {type: 'image/jpeg'}))
+    },
+    setComittee: function () {
+      confirmationAlert('Daftar Panitia', 'Apakah anda yakin untuk mendaftar menjadi panitia?',
+      function (e) {
+      })
+    },
+    setParticipant: function () {
+      confirmationAlert('Daftar Partisipan', 'Apakah anda yakin untuk mendaftar menjadi partisipan?',
+      function (e) {
+      })
     }
   },
   computed: {
