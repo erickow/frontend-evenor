@@ -84,10 +84,15 @@
 </template>
 
 <script>
-import { OrganizeTask, OrganizeDetail, OrganizeOrganization, OrganizeSetting } from '@/components'
-import Vote from './../../components/organize/detail/vote/index.vue'
+import {
+  OrganizeTask,
+  OrganizeDetail,
+  OrganizeOrganization,
+  OrganizeSetting
+} from "@/components";
+import Vote from "./../../components/organize/detail/vote/index.vue";
 export default {
-  name: 'v-organize-event',
+  name: "v-organize-event",
   components: {
     OrganizeTask,
     OrganizeDetail,
@@ -95,42 +100,49 @@ export default {
     OrganizeSetting,
     Vote
   },
-  created () {
-    this.$store.dispatch('loadEvent', this.$route.params.eventId)
-    this.$store.dispatch('loadEventComittee', this.$route.params.eventId)
+  created() {
+    this.$store.dispatch("loadEvent", this.$route.params.eventId);
+    this.$store.dispatch("loadEventComittee", this.$route.params.eventId);
   },
-  data () {
+  data() {
     return {
       components: OrganizeDetail,
-      componentsArray: ['OrganizeDetail', 'OrganizeTask', 'OrganizeOrganization', 'OrganizeSetting'],
+      componentsArray: [
+        "OrganizeDetail",
+        "OrganizeTask",
+        "OrganizeOrganization",
+        "OrganizeSetting"
+      ],
       currentPage: 1,
-      sortBy: 'score',
+      sortBy: "score",
       sortDesc: true,
       fields: [
-        {key: 'comittee.photo', label: '', sortable: true},
-        { key: 'comittee.name', label: 'Nama Panitia', sortable: true },
-        { key: 'score', label: 'Score', sortable: true }
+        { key: "comittee.photo", label: "", sortable: true },
+        { key: "comittee.name", label: "Nama Panitia", sortable: true },
+        { key: "score", label: "Score", sortable: true }
       ]
-    }
+    };
   },
   methods: {
-    swapComponent: function (component) {
-      this.components = component
+    swapComponent: function(component) {
+      this.components = component;
     },
-    imageView (data) {
-      return URL.createObjectURL(new Blob([data.value], { type: 'image/jpeg' }))
+    imageView(data) {
+      return URL.createObjectURL(
+        new Blob([data.value], { type: "image/jpeg" })
+      );
     }
   },
   computed: {
-    comittees () {
-      return this.$store.getters.eventComittee
+    comittees() {
+      return this.$store.getters.eventComittee;
     }
   }
-}
+};
 </script>
 
 <style scoped>
-.menu .card:hover{
+.menu .card:hover {
   background: turquoise !important ;
 }
 </style>
