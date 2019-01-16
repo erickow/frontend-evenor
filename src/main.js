@@ -23,7 +23,7 @@ Vue.component('v-select', vSelect)
 Vue.use(VueAxios, axios, VueAlertify)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
-
+// commender
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
